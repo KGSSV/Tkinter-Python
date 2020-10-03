@@ -26,5 +26,7 @@ top.geometry('200x200+500+500')
 # to change background of root or top window
 top.config(bg='blue')
 
+# to change to blue color
+
 # using the main gaint loop to run the application
 root.mainloop()
