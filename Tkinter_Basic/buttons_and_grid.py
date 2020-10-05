@@ -51,5 +51,5 @@ but7.grid(row='2', column='2', padx=(10, 0), sticky='w')
 
 # always remember (grid is only fr placement and using padding etc check terminal for error)
 
-# for grid use the following prop ( row , colum , padx pady , ipadx ipad y , columnspan , rowspan)
+# for grid use the following prop ( row , colum , padx pady , ipadx ipad y , columnspan , rowspan ,)
 root.mainloop()
