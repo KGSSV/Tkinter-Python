@@ -49,7 +49,7 @@ but7.grid(row='2', column='2', padx=(10, 0), sticky='w')
 
 # please see the code by removing the stiky property from but7 ( sticky is only a temp soln use frames for permanent soln)
 
-# always remember (grid is only fr placement and using padding etc check terminal for erroe)
+# always remember (grid is only fr placement and using padding etc check terminal for error)
 
 # for grid use the following prop ( row , colum , padx pady , ipadx ipad y , columnspan , rowspan)
 root.mainloop()
