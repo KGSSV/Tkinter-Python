@@ -44,7 +44,10 @@ but6.grid(row='2', column='1', padx=(10, 0))
 
 but7 = tkinter.Button(root, text='but', bg="#ff0000",
                       )
+# since button3 is lasgest this but7 is centered
 but7.grid(row='2', column='2', padx=(10, 0), sticky='w')
+
+# please see the code by removing the stiky property from but7 ( sticky is only a temp soln use frames for permanent soln)
 
 # always remember (grid is only fr placement and using padding etc check terminal for erroe)
 
