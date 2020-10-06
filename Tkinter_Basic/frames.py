@@ -37,5 +37,7 @@ lab3.grid(row=2, column=2)
 lab4 = tkinter.Label(frame3, text=' hello i am using pack()')
 lab4.pack()
 
+# hence achived of using multiple layout managers in one sngle root window
+
 # run the loop
 root.mainloop()
