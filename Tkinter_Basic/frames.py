@@ -28,7 +28,7 @@ lab1.pack()
 
 # used frame2 instead of root as we want to place where . we want to place in frame 2
 lab2 = tkinter.Label(frame2, text=' hello i am using grid()')
-lab3 = tkinter.Label(frame2, text=' hello i am using pack()')
+lab3 = tkinter.Label(frame2, text=' hello i am using grid()')
 
 lab2.grid(row=1, column=1)
 lab3.grid(row=2, column=2)
