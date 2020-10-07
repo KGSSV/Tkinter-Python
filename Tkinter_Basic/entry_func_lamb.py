@@ -5,7 +5,7 @@ root = tkinter.Tk()
 root.title('Basics!!')
 
 root.geometry('500x500')
-root.iconbitmap('tel.ico')
+
 
 # defineing functions
 
