@@ -6,6 +6,7 @@ from PIL import ImageTk, Image
 root = tkinter.Tk()
 root.title('Conversion Helper')
 root.iconbitmap('scale.ico')
+root.resizable(0, 0)
 # dont specify the geometry based on widgets tkinter decides how space is to be taken make it as small as possible
 
 # functions
