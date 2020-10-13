@@ -18,7 +18,7 @@ root.config(bg=bg_color)
 # functions
 
 
-def additem():
+def additem(*args):
     '''add items'''
     listbox.insert(END, list_entry.get())
     list_entry.delete(0, END)
@@ -68,6 +68,7 @@ list_entry = tkinter.Entry(input_frame, width=50,
 
 add_but = tkinter.Button(input_frame, text='Add Item',
                          bg=button_color, command=additem)
+list_entry.bind("<Return>", additem)
 list_entry.grid(row=0, column=0, padx=10, pady=10)
 add_but.grid(row=0, column=1, padx=(0, 10), pady=10, ipadx=5)
 
