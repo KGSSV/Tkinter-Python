@@ -167,6 +167,5 @@ input_text = scrolledtext.ScrolledText(
     textframe, width=1000, height=100, font=myfont, bg=tbox_color)
 input_text.pack(padx=5, pady=5)
 
-
 # run the windows loop
 root.mainloop()
