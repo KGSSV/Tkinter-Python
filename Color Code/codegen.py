@@ -1,6 +1,6 @@
 import tkinter
 import random
-from tkinter import BOTH, IntVar, DISABLED
+from tkinter import BOTH, IntVar, DISABLED, filedialog
 
 root = tkinter.Tk()
 root.geometry('450x500')
@@ -60,7 +60,7 @@ def update_color():
                    padx=35, pady=10)
 
     color_hex = tkinter.Label(
-        input_frame, text='#' + red_value + green_value + blue_value)
+        input_frame, text='#' + (red_value + green_value + blue_value).upper())
     color_hex.grid(row=3, column=3, columnspan=2)
 
     color_tup.config(text='(' + str(red_slider.get()) + '),' + ' (' +
@@ -79,6 +79,63 @@ def rand():
     update_color()
 
 
+def set_color(r, g, b):
+    red_slider.set(r)
+    green_slider.set(g)
+    blue_slider.set(b)
+
+
+def save_color():
+    # get the current values
+    savered = str(red_slider.get())
+    savegreen = str(green_slider.get())
+    saveblue = str(blue_slider.get())
+
+    while len(savered) < 3:
+        savered = '0' + savered
+
+    while len(str(savegreen)) < 3:
+        savegreen = '0' + savegreen
+
+    while len(str(saveblue)) < 3:
+        saveblue = '0' + saveblue
+    # create new widgets
+    recall_button = tkinter.Button(
+        output_frame, text='Recall', command=lambda: set_color(savered, savegreen, saveblue))
+
+    new_color_tuple = tkinter.Label(output_frame, text='(' + savered + '),' + ' (' +
+                                    savegreen + '),' + ' (' + saveblue + ')')
+    new_color_hex = tkinter.Label(
+        output_frame, text=('#' + red_value + green_value + blue_value).upper())
+    new_outer_color_box = tkinter.Label(
+        output_frame, bg='black', height=1, width=3)
+    new_inner_color_box = tkinter.Label(
+        output_frame, bg='#'+red_value + green_value + blue_value, height=1, width=3)
+    recall_button.grid(row=stored_color.get(), column=1, padx=20, )
+    new_color_tuple.grid(row=stored_color.get(), column=2, padx=20,)
+    new_color_hex.grid(row=stored_color.get(), column=3, padx=20)
+
+    new_outer_color_box.grid(row=stored_color.get(), column=4, padx=20,
+                             pady=2, ipadx=5, ipady=5)
+    new_inner_color_box.grid(row=stored_color.get(), column=4)
+    stored_colors[stored_color.get()] = [new_color_tuple.cget(
+        'text'), new_color_hex.cget('text')]
+
+    if stored_color.get() < 5:
+        stored_color.set(stored_color.get() + 1)
+
+
+def save():
+    # get directory
+    filename = filedialog.asksaveasfilename(
+        initialdir='./', title='Save Colors', filetypes=(('Text', '.txt'), ('All files', '*.*')))
+    # open the file
+    with open(filename, 'w') as f:
+        f.write('Color Theme Maker Output\n')
+        for save_entry in stored_colors.values():
+            f.write(save_entry[0] + '\n' + save_entry[1] + '\n\n')
+
+
 # defining layouts
 input_frame = tkinter.LabelFrame(root, padx=9, pady=5)
 output_frame = tkinter.LabelFrame(root, padx=5, pady=5)
@@ -88,24 +145,30 @@ output_frame.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
 red_label = tkinter.Label(input_frame, text='R')
 red_slider = tkinter.Scale(input_frame, from_=0, to=255, command=getred)
-red_button = tkinter.Button(input_frame, text='Red')
+red_button = tkinter.Button(input_frame, text='Red',
+                            command=lambda: set_color(255, 0, 0))
 
 green_label = tkinter.Label(input_frame, text='G')
 green_slider = tkinter.Scale(input_frame, from_=0, to=255, command=getgreen)
-green_button = tkinter.Button(input_frame, text='Green')
+green_button = tkinter.Button(
+    input_frame, text='Green', command=lambda: set_color(0, 255, 0))
 
 blue_label = tkinter.Label(input_frame, text='B')
 blue_slider = tkinter.Scale(input_frame, from_=0, to=255, command=getblue)
-blue_button = tkinter.Button(input_frame, text='Blue')
+blue_button = tkinter.Button(
+    input_frame, text='Blue', command=lambda: set_color(0, 0, 255))
 
 
-yellow_button = tkinter.Button(input_frame, text='Yellow')
-cyan_button = tkinter.Button(input_frame, text='Cyan')
-magenta_button = tkinter.Button(input_frame, text='Megenta')
+yellow_button = tkinter.Button(
+    input_frame, text='Yellow', command=lambda: set_color(255, 255, 0))
+cyan_button = tkinter.Button(
+    input_frame, text='Cyan', command=lambda: set_color(0, 255, 255))
+magenta_button = tkinter.Button(
+    input_frame, text='Megenta', command=lambda: set_color(255, 0, 255))
 
 # functionality buttons
-store_button = tkinter.Button(input_frame, text='Store')
-save_button = tkinter.Button(input_frame, text='Save')
+store_button = tkinter.Button(input_frame, text='Store', command=save_color)
+save_button = tkinter.Button(input_frame, text='Save', command=save)
 quit_button = tkinter.Button(input_frame, text='Quit', command=root.destroy)
 random_col = tkinter.Button(input_frame, text='Randomize', command=rand)
 
@@ -137,7 +200,7 @@ random_col.grid(row=0, column=3, columnspan=3, sticky='e', padx=(0, 33))
 
 color_box = tkinter.Label(input_frame, bg='black', height=6, width=15)
 color_tup = tkinter.Label(input_frame, text='(0), (0), (0)')
-color_hex = tkinter.Label(input_frame, text='#ffffff')
+color_hex = tkinter.Label(input_frame, text='#FFFFFF')
 
 # pack them
 color_box.grid(row=1, column=3, columnspan=2,
@@ -157,7 +220,7 @@ for i in range(6):
     recall_button.grid(row=i, column=1, padx=20, )
 
     new_color_tuple = tkinter.Label(output_frame, text='(255), (255), (255)')
-    new_color_hex = tkinter.Label(output_frame, text='#ffffff')
+    new_color_hex = tkinter.Label(output_frame, text='#FFFFFF')
 
     new_outer_color_box = tkinter.Label(
         output_frame, bg='black', height=1, width=3)
