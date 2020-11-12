@@ -3,6 +3,7 @@ import re
 from tkinter import IntVar, END, DISABLED, NORMAL
 from playsound import playsound
 from PIL import Image, ImageTk
+import pandas as pd
 root = tkinter.Tk()
 
 root.title('Morse Translator')
@@ -48,6 +49,8 @@ def getmorse():
             morse += " "
         # seperate words in morse
         morse += '|'
+    df = pd.DataFrame([morse])
+    df.to_clipboard(index=False, header=False)
 
     output_text.config(state=NORMAL)
     output_text.delete(1.0, END)
