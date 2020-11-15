@@ -93,6 +93,8 @@ def changelabel(message):
     start_button.config(text=message)
     if message == 'Wrong!!':
         start_button.config(bg='red')
+    elif message == 'Correct!!':
+        start_button.config(bg='green')
     else:
         start_button.config(bg=game_color)
 
