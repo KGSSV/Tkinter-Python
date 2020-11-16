@@ -25,7 +25,7 @@ def search():
     ''' use open whether api to access the wesbite'''
     global response
     URL = 'https://api.openweathermap.org/data/2.5/weather'
-    api_key = 'b0f87072d5cfc59b1369dc99d14ffd0b'
+    api_key = 'YOUR API KEY TAKE IT FROM OPENWEATHER.ORG'
 
     # based on name and zip make the query string
     if search_method.get() == 1:
