@@ -40,7 +40,7 @@ def search():
     # convert the following into json format
     response = response.json()
     # dictionary format has been achived
-    'print(response)'
+    'print(response)''
     # example response for chennai
     """{'coord': {'lon': 80.28, 'lat': 13.09}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 
     'base': 'stations', 'main': {'temp': 300.15, 'feels_like': 306.47, 'temp_min': 300.15, 'temp_max': 300.15, 'pressure': 1011, 'humidity': 94}, 
